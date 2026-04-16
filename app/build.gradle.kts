@@ -61,7 +61,8 @@ dependencies {
     implementation(libs.converter.gson)
 
     // Coil
-    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
 
     // View Model
     implementation(libs.viewmodels)

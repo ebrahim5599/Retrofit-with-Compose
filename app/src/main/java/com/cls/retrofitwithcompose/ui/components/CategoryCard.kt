@@ -11,10 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.cls.retrofitwithcompose.R
 import com.cls.retrofitwithcompose.data.model.Category
 
@@ -39,10 +42,11 @@ fun CategoryCard(
         ) {
             // Category Image
             AsyncImage(
-                model = category.imageUrl,
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(category.imageUrl)
+                    .crossfade(true)
+                    .build(),
                 contentDescription = "${category.name} image",
-                placeholder = painterResource(R.drawable.ic_placeholder),
-                error = painterResource(R.drawable.ic_error),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(72.dp)
